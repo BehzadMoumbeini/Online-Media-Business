@@ -62,4 +62,3 @@ class FileDetailView(APIView):
 
         serializer = FileSerializer(f, context={'request': request})
         return Response(serializer.data)
-#here in detail like list, also use product_id, to make sure the file you are calling , belong the same product

@@ -137,13 +137,6 @@ class UserProfile(models.Model):
     birthday = models.DateField(_('birthday'), null=True, blank=True)
     gender = models.NullBooleanField(_('gender'), help_text=_('female is False, male is True, null is unset'))
     province = models.ForeignKey(verbose_name=_('province'), to='Province', null=True, on_delete=models.SET_NULL)
-    # email = models.EmailField(_('email address'), blank=True)
-    # phone_number = models.BigIntegerField(_('mobile number'), null=True, blank=True,
-    #                                       validators=[
-    #                                           validators.RegexValidator(r'^319[0-3,9]\d{8}$',
-    #                                                                     _('Enter a valid mobile number.'), 'invalid'),
-    #                                       ],
-    #                                       )
 
     class Meta:
         db_table = 'user_profiles'
@@ -174,11 +167,7 @@ class Device(models.Model):
 
     user = models.ForeignKey(User, related_name='devices', on_delete=models.CASCADE)
     device_uuid = models.UUIDField(_('Device UUID'), null=True)
-    # notify_token = models.CharField(
-    #     _('Notification Token'), max_length=200, blank=True,
-    #     validators=[validators.RegexValidator(r'([a-z]|[A-z]|[0-9])\w+',
-    #                                           _('Notify token is not valid'), 'invalid')]
-    # )
+
     last_login = models.DateTimeField(_('last login date'), null=True)
     device_type = models.PositiveSmallIntegerField(choices=DEVICE_TYPE_CHOICES, default=WEB)
     device_os = models.CharField(_('device os'), max_length=20, blank=True)
