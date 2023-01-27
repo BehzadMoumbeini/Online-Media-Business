@@ -20,11 +20,14 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('products.urls'))
+    path('', include('products.urls')),
+    path('', include('users.urls')),
+    path('subs/', include('subscriptions.urls')),
+    path('payments/', include('payments.urls'))
 ]
 
-
 if settings.IS_DEVEL:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  #with this line you can see the file. you tell to find the file in MEDIA_ROOT and make in MEDIA_URL in the url in browser
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 # this line is for development and when you test the code BUT in production this line is not needed because web server (NGINX or Apache) will do the job
 
