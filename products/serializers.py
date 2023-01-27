@@ -19,11 +19,11 @@ class FileSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     categories = CategorySerializer(many=True)
-    files = FileSerializer(many=True)
+    # files = FileSerializer(many=True) #the user can see the details only if they have subscription.
 
     class Meta:
         model = Product
-        fields = ('id', 'title', 'description', 'avatar', 'categories', 'files', 'url')
+        fields = ('id', 'title', 'description', 'avatar', 'categories', 'url')
 
 
 

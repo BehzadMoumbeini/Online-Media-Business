@@ -4,7 +4,7 @@ from rest_framework import status
 
 from .models import Category, Product, File
 from .serializers import CategorySerializer, ProductSerializer, FileSerializer
-
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 class CategoryListView(APIView):
     def get(self, request):
@@ -34,6 +34,8 @@ class ProductListView(APIView):
 
 
 class ProductDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk):
         try:
             product = Product.objects.get(pk=pk)
